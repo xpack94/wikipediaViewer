@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Mogra" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    
+  <style>
+      
+      *{
+          margin: 0;
+          padding: 0;
+      }
+      html,body{
+          height: 100%;
+      }
+      body{
+         
+         background-image: url(images/randomQuotesBackground.jpg);
+         background-size: cover;
+        background-repeat: no-repeat;
+      
+      }
+      
+      
+      #wrapper{
+          color:white;
+          font-family: 'Mogra', cursive;
+      }
+      h1:first-letter{
+          font-size: 200%;
+          text-transform: uppercase;
+      }
+      
+      .quotes-container{
+         box-sizing: border-box;
+          margin-top: 50px;
+         padding-top: 20px;
+          max-width: 50%;
+          border:3px solid rgba(0,0,0,0.5);
+          border-radius: 5%;
+         font-family: 'Merriweather', serif;
+          font-size: 1.1em;
+          height: 169px;
+          box-shadow: 10px 10px 5px rgba(0,0,0,0.5);
+      }
+      
+      .fa{
+          color: black;
+          font-size: 200%;
+          transform: rotate(5deg);
+          margin: 0 7px;;
+      }
+      .character{
+          display: block;
+          width: 100%;
+          clear: both;
+          text-align: right;
+      }
+      .button-container{
+          max-width: 50%;
+          margin-top: 12px;
+          display: flex;
+      }
+      
+      .quotes-generator{
+          margin: 7px 0;
+          border:2px solid grey;
+         float: right;
+        
+      }
+      .twitter{
+          flex: 2;
+          text-align: left;
+          margin: 7px 0;
+      }
+      .twitter >a{
+          border:2px solid grey;
+      }
+     
+      @media screen and (max-width:990px){
+          .quotes-container{
+              font-size: 13px;
+          }
+      }
+      
+      @media screen and (max-width:770px){
+          .quotes-container{
+              font-size: 12px;
+          }
+      }
+      
+      @media screen and (max-width:632px){
+          .quotes-container{
+              font-size:10px;
+              border:0px;
+              box-shadow: 0 0 0 rgba(0,0,0,0);
+              height: auto;
+           }
+          
+          
+      }
+      @media screen and (max-width:500px){
+          .button-container{
+              display: block;
+              
+          }
+          .twitter, .quotes-generator{
+              width: 100%;
+          }
+          .twitter >a{
+              border:none;
+          }
+          .twitter{
+              border:2px solid grey;
+              text-align: center;
+          }
+      }
+    
+    
+    
+    </style>
+</head>
+<body>
+    
+    <div id="wrapper" class="container container-fluid text-center">
+        <h1 class="title">random Quote Machine</h1>
+        <h4>(games of thrones quotes)</h4>
+        <div class="quotes-container container  text-left">    
+        </div>
+        <div class="container button-container ">
+        <div class="twitter" data-toggle="tooltip" title="share the quote on twitter"> <a class="twitter-share-button btn"
+          href="#"
+          data-size="large" role="button">
+        <i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></div>
+        <div class="quotes-generator btn " role="button">New Quote</div>
+          </div> 
+       
+        
+    </div>
+    
+    
+    <script>
+    
+    
+    $(function(){
+        const twitterText="https://twitter.com/intent/tweet?text=";
+         var generator= document.querySelector(".quotes-generator").addEventListener("click",getJson);
+            getJson();
+      
+        
+         $(".twitter").click(function(){
+          let text=$(".quotes-container").text();
+             $(".twitter-share-button").attr("href",twitterText+text);
+         });
+    });
+        
+        function getJson(){
+            
+          $.getJSON("https://got-quotes.herokuapp.com/quotes",setJson);
+        }
+        
+        
+        function setJson(json){
+             var quote=`
+            <i class="fa fa-lg fa-quote-left" aria-hidden="true"></i> ${json.quote} <i class="fa fa-lg fa-quote-right" aria-hidden="true"></i>
+<span class="character ">-${json.character}</span>
+            `   
+            
+           document.querySelector(".quotes-container").innerHTML=quote;
+        }
+    
+        
+    
+    
+    </script>
+    
+</body>
+</html>
