@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        table{
+            margin: 5% auto;
+            width: 450px;
+            height: 732px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            position: relative;
+            
+           
+        }
+        td{
+            display: inline-block;
+            border: 10px solid #333;
+            width: 50%;
+            height: 100%;
+           
+        }
+       
+        tr:first-child td:first-child{
+              border-radius: 90% 0 0 0;
+              background-color: #00a74a;
+              
+           
+        }
+        tr:first-child td:last-child{
+            border-radius: 0 90% 0 0;
+            background-color: #9f0f17;
+        
+            
+        }
+        
+        tr:nth-child(2) td:first-child{
+         border-radius: 0 0 0 90%; 
+         background-color: #cca707;
+         
+        }
+        tr:nth-child(2) td:last-child{
+             border-radius: 0 0 90% 0;
+             background-color: #094a8f;
+        }
+        audio{
+            display: none;
+        }
+      
+          
+        
+        .center{
+            display: block;
+            width: 45%;
+            height: 60%;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            top:-305px;
+             -webkit-box-sizing:border-box;
+            box-sizing: border-box;
+           
+        }
+        .center td{
+            display: block;
+            margin: 0 auto;
+            border:11px solid #333;
+            border-radius: 50%;
+            width: 100%;
+            background-color: #ECE7EE;
+            -webkit-box-sizing:border-box;
+            box-sizing: border-box;
+           
+        }
+        
+        .features{
+           margin-top: 27px;
+        }
+        .name{
+                font-size: 2.3em;
+                color:black;
+                margin-top: 10px;
+                font-family: 'Alfa Slab One', cursive;
+                display: block;
+        }
+        .buttons{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .buttons::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .buttons div{
+            float: left;
+        }
+        .screen{
+            width: 56px;
+            height: 32px;
+            background-color: #32050C;
+            border:4px solid #222;
+            border-radius: 5px;
+            margin-left: 7px;
+            margin-right: 11px;
+            position: relative;
+        }
+        .screen span{
+            position: absolute;
+            bottom: -25px;
+            left: 9px;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.2em;
+        }
+        .screen .counter{
+            top:3px;
+            left: 15px;
+            color: #DC0D29;
+            letter-spacing: 2px;
+        }
+        
+        .onButton,.strict{
+            width: 20px;
+            height: 21px;
+            border: 3px solid #444;
+            border-radius: 50%;
+            background-color: yellow;
+            position: relative;
+            cursor: pointer;
+           box-shadow: 0px 2px 3px #222;
+            font-family: 'Josefin Sans', sans-serif;
+            font-size: 1.2em;
+        }
+        .onButton:active ,.strict:active{
+           box-shadow: 0px 0px 0px #222;  
+        }
+        .onButton{
+            margin-right: 15px;
+            background-color: red;
+            
+        }
+        .onButton span , .strict span{
+            position: absolute;
+            bottom: -31px;
+            left: -3px;
+        }
+        .light{
+            width: 10px;
+            height: 10px;
+            border: 1px solid black;
+            border-radius: 50%;
+            background-color: #333;
+            position: absolute;
+            top:-18px;
+            left: 3px;
+        }
+        .toggleWrapper{
+            display: block;
+            clear: both;
+            width: 100%;
+            position: relative;
+            top:20px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+           
+        }
+        .switch{
+            width: 50px;
+            height: 20px;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            background-color: #222;
+            border-radius: 2px;
+            padding: 2px;
+            position: relative;
+            bottom:-5px;
+            margin: 0 4px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .switcher{
+            display: block;
+            position: absolute;
+            left: 0;
+            top:0;
+            width: 25px;
+            height: 20px;
+            background-color: rgba(0,0,220,1);
+            border-radius: 4px;
+    
+        }
+        
+       
+ 
+    
+    </style>
+</head>
+<body>
+    
+<div class="game">
+             <audio controls class="error">
+              <source src="error.mp3" type="audio/ogg">
+                </audio>
+    <table>
+        <tr>
+            <td class="one 1" data-number="1">
+            <audio controls>
+              <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" type="audio/ogg">
+                </audio>
+            </td>
+            <td class="two 2" data-number="2">
+                <audio controls>
+              <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" type="audio/ogg">
+                </audio>
+            </td>
+        </tr>
+        <tr>
+            <td class="three 3" data-number="3">
+                <audio controls>
+              <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" type="audio/ogg">
+                </audio>
+            </td>
+            <td class="four 4" data-number="4">
+                <audio controls>
+              <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" type="audio/ogg">
+                </audio>
+            </td>
+        </tr>
+           
+           <tr class="center">
+               <td> 
+               <div class="features">
+               <span class="name">Simon</span>
+               <div class="buttons">
+                   <div class="screen"><span class="counter"></span><span>count</span></div>
+                   <div class="onButton"><span>start</span></div>
+                   <div class="strict"><span>strict</span><div class="light"></div></div>
+               </div>
+               
+             <div class="toggleWrapper">
+                   <div class="toggle">
+                      <span>off</span>
+                      <div class="switch"><div class="switcher"></div></div>
+                      <span>on</span>
+                  </div>
+              </div>
+               
+               </div></td>
+           </tr>
+    </table>
+    
+</div>
+
+   <script>
+        let switchh=document.querySelector(".switch");
+        let screen =document.querySelector(".screen");
+        let screenCounter=document.querySelector(".counter");
+        let startButton=document.querySelector(".onButton");
+        let strict=document.querySelector(".strict");
+        let played=[]; //array of the current played sequence 
+        //state is the state of the game true if it's on and false otherwise
+        let state=false;
+        var sequence="";
+        let isCompleted=false;
+        let score=0; //global score of the player
+        let strictState=false; //false = strict mode off , true=strict mode on
+        //toggling the switcher on and off when clicked and update the screen
+        switchh.addEventListener("click",function(){
+               let switcher=this.querySelector(".switcher");
+                //getting the value left of the switcher 
+                if(window.getComputedStyle(switcher).getPropertyValue("left")==="0px"){
+                    switcher.style.left=24+"px";
+                    screenCounter.textContent=score;
+                    state=true;
+                }else{
+                    switcher.style.left=0+"px";
+                    screenCounter.textContent="";
+                    state=false;
+                    played=[];
+                }
+                  });
+       
+       startButton.addEventListener("click",function(){
+          
+           if(state){
+            played=[];
+            score=0;
+           startGame(true);
+           
+           }else{
+              
+               return;
+           }
+       });
+       
+       strict.addEventListener("click",function(){
+           if(state){
+               
+          if(strictState){
+              strictState=false;
+               document.querySelector(".light").style.backgroundColor="#222";
+          }else{
+              strictState=true;
+              document.querySelector(".light").style.backgroundColor="#DC0D29";
+          }
+           }else{
+               return;
+           }
+       });
+      
+       function startGame(status){
+           
+           screenCounter.textContent=score;
+           if(status){
+                let random=Math.floor(Math.random()*4)+1 ;
+                played.push(random);
+            }
+          
+            let count=0;
+            //nested functions 
+            //the timer functions needs to be called when the iterate function is done
+            itirate(count);  
+            sequence="";   
+            window.addEventListener("click",listenForClick);
+       }
+       
+      
+       
+       //function  that reads the played array and play the sounds of the sequence
+       function itirate(count){
+            var interval=setInterval(function(){
+                if(count<played.length){
+                let number=played[count];
+                //adding 30 to use the unicode of the numbers because the classes with numbers name need to be retrieved by their unicode number
+                let section=document.querySelector(".\\"+(30+number));  
+                let sound=section.querySelector("audio");
+                sound.play();
+                sound.currentTime = 0;
+                checkNumber(number,section);
+                count++;
+               
+               
+                
+               }else{
+                   
+                   clearInterval(interval);
+                
+                   
+               }
+                   
+               },500);
+       }
+       //function that checks the number and calls changeColor depending on the number
+       function checkNumber(number,section){
+            if(number===1){
+                    tempChangeColor(section,"#13ff7c","#00a74a");
+                }else if(number===2){
+                    tempChangeColor(section,"#ff4c4c","#9f0f17");
+                
+                }else if(number===3){
+                    tempChangeColor(section,"#fed93f","#cca707");
+                   
+                }else {
+                    tempChangeColor(section,"#1c8cff","#094a8f");
+                }
+       }
+       //function that changes the color for 200 milliseconds
+       function tempChangeColor(section,newColor,oldColor){
+            section.style.backgroundColor=newColor;
+                    setTimeout(function(){
+                        section.style.backgroundColor=oldColor;
+                    },200);
+       }
+       function listenForClick(e){
+            
+            let num=parseInt(e.target.classList[1]);
+           
+             if(isNaN(num)){
+                return ;
+             }else{
+                 
+                  sequence+=""+num;
+                  let playedSequence=played.join("");
+                  let temp=playedSequence.slice(0,sequence.length);
+                checkNumber(num,e.target);
+                if(temp!==sequence){
+                    //play the error sound because the sequence doesn't match 
+                    let errorSound=document.querySelector(".error");
+                     errorSound.play();
+                     errorSound.currentTime=0;
+                   
+                    screenCounter.textContent="!!";
+                     //checking if the strict mode is on 
+                     if(strictState){
+                         played=[];
+                         score=0;
+                          setTimeout(function(){
+                            startGame(true);
+                        },1000);
+                     }else{     
+                        setTimeout(function(){
+                        startGame(false);
+                        },1000);
+                     }
+                }
+                if(sequence===played.join("")){
+                    isCompleted=true;
+                    screenCounter.textContent= ++score;
+                    if(score===20){
+                        screenCounter.textContent="win";
+                        //player won the game so initialize the played sequence 
+                        played=[];
+                        score=0;
+                        return;
+                    }
+                    startGame(true);
+                  
+                }
+             }
+       }
+    
+  </script> 
+</body>
+</html>
